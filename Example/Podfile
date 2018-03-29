@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Syncat_Example' do
+  pod 'Syncat', :path => '../'
+
+  target 'Syncat_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
