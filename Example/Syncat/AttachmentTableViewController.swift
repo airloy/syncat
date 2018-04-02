@@ -73,11 +73,11 @@ class AttachmentTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
             guard let realm = todo?.realm else {return}
             realm.beginWrite()
             todo?.attachments.remove(at: indexPath.row)
             try? realm.commitWrite(withoutNotifying: [notificationToken!])
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 

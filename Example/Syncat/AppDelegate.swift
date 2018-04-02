@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import Syncat
+import RealmSwift
+
+var syncatRealm: Realm?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var rt: RealmTracker?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let realm = try! Realm()
+        
+        // Use single realm file
+//        rt = RealmTracker(realm)
+        
+        // Use separate realm files
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = directory.appendingPathComponent("Syncat")
+        syncatRealm = try! Realm(configuration: Realm.Configuration(fileURL: fileURL))
+        rt = RealmTracker(realm, syncatRealm)
+        
+        rt?.register()
         return true
     }
 
