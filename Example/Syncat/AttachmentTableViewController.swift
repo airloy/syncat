@@ -70,7 +70,7 @@ class AttachmentTableViewController: UITableViewController {
         return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             guard let realm = todo?.realm else {return}
@@ -84,14 +84,14 @@ class AttachmentTableViewController: UITableViewController {
 }
 
 extension AttachmentTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         defer {
             picker.dismiss(animated: true)
         }
         
         print(info)
         // get the image
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
         
@@ -104,7 +104,7 @@ extension AttachmentTableViewController: UIImagePickerControllerDelegate, UINavi
 //            
 //        }
         attachment.name = attachment.id
-        attachment.data = UIImageJPEGRepresentation(image, 0.2)
+        attachment.data = image.jpegData(compressionQuality: 0.2)
         try? todo?.realm?.write {
             todo?.attachments.append(attachment)
         }

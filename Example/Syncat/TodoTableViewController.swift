@@ -45,9 +45,9 @@ class TodoTableViewController: UITableViewController {
     }
 
     @objc func addTask(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "New Todo", message: "Write the name of your todo.", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "New Todo", message: "Write the name of your todo.", preferredStyle: UIAlertController.Style.alert)
         
-        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action) -> Void in
+        let createAction = UIAlertAction(title: "Create", style: UIAlertAction.Style.default) { (action) -> Void in
             if let todoName = alertController.textFields?.first?.text {
                 let newTodo = Todo()
                 newTodo.name = todoName
@@ -62,11 +62,11 @@ class TodoTableViewController: UITableViewController {
         createAction.isEnabled = false
         self.currentCreateAction = createAction
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         
         alertController.addTextField { (textField) -> Void in
             textField.placeholder = "Todo Name"
-            textField.addTarget(self, action: #selector(self.todoNameFieldDidChange) , for: UIControlEvents.editingChanged)
+            textField.addTarget(self, action: #selector(self.todoNameFieldDidChange) , for: UIControl.Event.editingChanged)
         }
         
         self.present(alertController, animated: true, completion: nil)

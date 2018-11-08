@@ -39,16 +39,16 @@ class TodoViewController: UIViewController {
     }
 
     @IBAction func showTaskList(_ sender: Any) {
-        let alertController = UIAlertController(title: nil, message: "Select List", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertController = UIAlertController(title: nil, message: "Select List", preferredStyle: UIAlertController.Style.actionSheet)
         todo?.realm?.objects(TodoList.self).forEach { todoList in
-            let listAction = UIAlertAction(title: todoList.name, style: UIAlertActionStyle.default) { (action) -> Void in
+            let listAction = UIAlertAction(title: todoList.name, style: UIAlertAction.Style.default) { (action) -> Void in
                 try? self.todo?.realm?.write {
                     self.todo?.list = todoList
                 }
             }
             alertController.addAction(listAction)
         }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     

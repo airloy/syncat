@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/Syncat.svg?style=flat)](http://cocoapods.org/pods/Syncat)
 [![Platform](https://img.shields.io/cocoapods/p/Syncat.svg?style=flat)](http://cocoapods.org/pods/Syncat)
 
+WIP
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.

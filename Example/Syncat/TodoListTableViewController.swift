@@ -39,9 +39,9 @@ class TodoListTableViewController: UITableViewController {
     }
 
     @IBAction func addList(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "New List", message: "Write the name of your list.", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "New List", message: "Write the name of your list.", preferredStyle: UIAlertController.Style.alert)
         
-        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action) -> Void in
+        let createAction = UIAlertAction(title: "Create", style: UIAlertAction.Style.default) { (action) -> Void in
             if let taskName = alertController.textFields?.first?.text {
                 let newList = TodoList()
                 newList.id = self.lists.count
@@ -56,11 +56,11 @@ class TodoListTableViewController: UITableViewController {
         createAction.isEnabled = false
         self.currentCreateAction = createAction
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         
         alertController.addTextField { (textField) -> Void in
             textField.placeholder = "List Name"
-            textField.addTarget(self, action: #selector(self.taskNameFieldDidChange) , for: UIControlEvents.editingChanged)
+            textField.addTarget(self, action: #selector(self.taskNameFieldDidChange) , for: UIControl.Event.editingChanged)
         }
         
         self.present(alertController, animated: true, completion: nil)
